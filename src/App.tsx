@@ -1,7 +1,7 @@
-import StateManagementView from "src/pages/StateManagementView";
+import StateModelingView from "src/pages/StateModelingView";
 import "./App.css";
 function App() {
-  return <StateManagementView />;
+  return <StateModelingView />;
 }
 
 export default App;

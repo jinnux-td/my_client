@@ -1,5 +1,5 @@
-import Counter from "src/components/Counter";
+import ShoppingCart from "src/components/ShoppingCart";
 
 export default function StateManagementView() {
-  return <Counter />;
+  return <ShoppingCart />;
 }
