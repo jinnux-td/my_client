@@ -33,5 +33,9 @@ In conclusion, passed event handler to React component can be any name as normal
    Form and some element has default handler when we interact. It;s may not what we want, so developer can disable those feature if needed
 
 4. State changing using event handler
-   Side effect should put into event handler. However, event handler modify local state is bad as modify it while rendering. It make debugging harder when some element unintentionally invoke this event and make state of component changed (this is still ok, just like class). But, having event handler modify local state leads to closure, which is the component can not be collected by garbage collector as long as the event handler exist => Memory leak
-   We store mutable state in a central memory for management => Local state use central state + event handler point to central state => Component can be cleared after usage
+   Side effect should put into event handler. However, event handler modify local state is bad. Actually, when rerender, the state of local variable is reset cause the function is called again. The second problem is that React doesn't even know it must rerender at all.
+   Solving this problem by providing a state that persist through rerender and a callback to change state that allow React know it must rerender. The state is still local to component => 2 same components will have different state
+
+   ## React mechanism
+
+   JSX code define virtual DOM tree. React manages a list of components (fiber nodes) and their associated states (component node + state + link to DOM node + link to virtual DOM node). The virtual DOM affects the fiber nodes by providing a description of the UI. Hook allow to change internal state. Using the components and their states, React efficiently reflects changes to the real DOM.
