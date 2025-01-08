@@ -45,6 +45,7 @@ JSX code define virtual DOM tree. React manages a list of components (fiber node
 Change to DOM will be sync by browser rendering
 A React component define by its function definition too, so even if 2 function return same structure, the component doesn't recognize it and will treat as a new component. But, if we create jsx component using conditional if (condition) <A/> else <A/>, the virtual DOM created will have node with same definition with old component (from a same function) => Not rerender
 However, we can modify this default behavior using "key" property in component => Separate component. And because key is used to determine child component, it just need to unique in parent component only
+NOTE: Using key allow to move component around and its state still remain
 
 NOTE: When use setState method with object value, React may internal not replace old state object to new object but just copy value only => Case use state object as component key, rerender but React treat component is still the same key
 
@@ -64,3 +65,9 @@ Create a state machine for UI is perfect
 
 1. Create needed states for variables. We can use single state for each variable or gather multiple variables into one state
 2. Define "state" in state machine for UI life circle. This allows us to handle each state separately => We need one only. With variable states that can replace life circle state, remove that state from life circle and use variable state instead
+
+## Reducer
+
+Instead of out handle state logic with the component function, which lead a big ball of mud, separating view and logic can make source code easier to manage. The trade off is create a function that quite similar with event handler at first sight. Event handler will dispatch (pass action to reducer) and done, even when state change logic become complex, event handler keeps small size. All logic locate in reducer.
+Another advantage for this approach is TESTING. When developing, developer need to design code to test. Attach logic with UI in a jsx file will make it way more harder to test feature than test pure state change logic in Reducer
+Finally, a action is a interaction that change UI, not a fraction of it (when user submit form, should use submit action instead multiple change field actions)
