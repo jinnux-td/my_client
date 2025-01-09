@@ -71,3 +71,13 @@ Create a state machine for UI is perfect
 Instead of out handle state logic with the component function, which lead a big ball of mud, separating view and logic can make source code easier to manage. The trade off is create a function that quite similar with event handler at first sight. Event handler will dispatch (pass action to reducer) and done, even when state change logic become complex, event handler keeps small size. All logic locate in reducer.
 Another advantage for this approach is TESTING. When developing, developer need to design code to test. Attach logic with UI in a jsx file will make it way more harder to test feature than test pure state change logic in Reducer
 Finally, a action is a interaction that change UI, not a fraction of it (when user submit form, should use submit action instead multiple change field actions)
+
+## Context
+
+Using single source of true require move props from children to a single parent node. That lead to passing data in a long way from parent to the nodes using that props
+=> Using a "global" state in parent to save props that children can access to by default
+Note that context just allow parent doesn't need to pass props to children. The props in parent must be defined or passed from higher ancestor component
+We can understand that for each context, context wrapper create a context stack while call component function to create virtual DOM. When need to access context, the function get the top context value
+Warning: Should not overuse context. Try first with other mechanism and use context when needed
+Context is suitable for case apply for entire UI tree like change theme, get current user information, routing.
+Context can be used with state, when context change, it update all component read it

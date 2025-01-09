@@ -1,7 +1,7 @@
-import { TaskManagementView } from "src/features/task";
 import "./App.css";
+import ContextView from "src/pages/ContextView";
 function App() {
-  return <TaskManagementView />;
+  return <ContextView />;
 }
 
 export default App;
