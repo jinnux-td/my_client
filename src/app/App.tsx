@@ -1,7 +1,7 @@
-import { TaskManagementView } from "src/features/task";
+import CustomHookView from "src/pages/CustomHook";
 import "./App.css";
 function App() {
-  return <TaskManagementView />;
+  return <CustomHookView />;
 }
 
 export default App;

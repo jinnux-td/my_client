@@ -86,3 +86,18 @@ Context can be used with state, when context change, it update all component rea
 
 Move further, instead of define event handler in Parent component, with state moved to context, we can move event handler to context too.
 => Doesn't need to pass event handler to each children component (same analogy as state). Just use it in the needed components
+
+## Advanced problem
+
+useRef allow remember state of a variable without rerender state
+useRef allow access to the realDOM for some affects like hight a node, scroll to header,... which is not built-in React feature. Features that need effect and event handler logic together, it's may move event handler logic to reducer while keep effect in event handler as UI interaction. Or, we can pass the useRef to action and handle it in reducer, too
+
+To add effect while synchronize with external system, useEffect allow run logic after he rendering => Having skeleton -> Load data -> Rerendering
+useEffect can choose to run one time, or each time component rerender, or base on some condition
+useEffect can also clean itself before the next run or when unmount the component
+useEffect should apply for component that already on the screen => DO NOT USE IT FOR EVENT HANDLER LOGIC (Which is interaction when user do something)
+
+## useMemo
+
+Recalculate a value in case some other data change (while rerender, so logic must be pure), otherwise the value is cached
+It is different from useEffect that useEffect run after rerender. useRef save data change without rerender UI. useState save data and rerender UI
