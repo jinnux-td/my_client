@@ -81,3 +81,8 @@ We can understand that for each context, context wrapper create a context stack 
 Warning: Should not overuse context. Try first with other mechanism and use context when needed
 Context is suitable for case apply for entire UI tree like change theme, get current user information, routing.
 Context can be used with state, when context change, it update all component read it
+
+## Context with reducer
+
+Move further, instead of define event handler in Parent component, with state moved to context, we can move event handler to context too.
+=> Doesn't need to pass event handler to each children component (same analogy as state). Just use it in the needed components

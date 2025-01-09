@@ -1,16 +1,10 @@
 import { useState } from "react";
+import { useTasksDispatch } from "src/features/task/stores/TaskContext";
 import { TTask } from "src/features/task/types/types";
 
-export function Task({
-  task,
-  onChange,
-  onDelete,
-}: {
-  task: TTask;
-  onChange: (task: TTask) => void;
-  onDelete: (id: number) => void;
-}) {
+export function Task({ task }: { task: TTask }) {
   const [isEditing, setIsEditing] = useState(false);
+  const dispatch = useTasksDispatch()!;
   let taskContent;
   if (isEditing) {
     taskContent = (
@@ -18,9 +12,12 @@ export function Task({
         <input
           value={task.text}
           onChange={(e) => {
-            onChange({
-              ...task,
-              text: e.target.value,
+            dispatch({
+              type: "changed",
+              task: {
+                ...task,
+                text: e.target.value,
+              },
             });
           }}
         />
@@ -41,14 +38,26 @@ export function Task({
         type="checkbox"
         checked={task.done}
         onChange={(e) => {
-          onChange({
-            ...task,
-            done: e.target.checked,
+          dispatch({
+            type: "changed",
+            task: {
+              ...task,
+              done: e.target.checked,
+            },
           });
         }}
       />
       {taskContent}
-      <button onClick={() => onDelete(task.id)}>Delete</button>
+      <button
+        onClick={() =>
+          dispatch({
+            type: "deleted",
+            id: task.id,
+          })
+        }
+      >
+        Delete
+      </button>
     </label>
   );
 }
