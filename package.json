@@ -2,6 +2,7 @@
   "name": "my_client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://jinnux-td.github.io/my_client",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -20,7 +21,9 @@
     "format": "prettier --write \"src/**/*.tsx\"",
     "format:check": "prettier --check \"src/**/*.tsx\"",
     "lint": "eslint \"src/**/*.tsx\" --fix",
-    "lint:check": "eslint \"src/**/*.tsx\""
+    "lint:check": "eslint \"src/**/*.tsx\"",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -49,6 +52,7 @@
     "cz-conventional-changelog": "^3.3.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.37.3",
+    "gh-pages": "^6.3.0",
     "globals": "^15.14.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.3.0",
